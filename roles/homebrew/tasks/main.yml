@@ -1,0 +1,9 @@
+---
+# Install homebrew (http://brew.sh/)
+
+- stat: path=/usr/local/bin/brew
+  register: brew
+
+- name: Install homebrew
+  raw: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  when: brew.stat.exists == False
