@@ -1,1 +1,1 @@
-# osx-playbook
+# Ansible playbook for OS X
