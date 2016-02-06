@@ -13,3 +13,14 @@
 
 - name: Create go workspace directory
   file: path="{{ ansible_env.HOME }}/Development/go" state=directory
+
+- name: Create environment variables
+  lineinfile: dest="{{ ansible_env.HOME }}/.config/fish/config.fish" line={{ item.line }}
+  with_items:
+    - { line: 'set -x GOROOT /usr/local/go'}
+    - { line: 'set -x GOPATH $HOME/Development/go'}
+    - { line: 'set -x PATH $PATH $GOROOT/bin/ $GOPATH/bin'}
+
+- name: Remove tarball
+  become: yes
+  file: path=/tmp/go{{ golang_version }}.darwin-amd64.tar.gz state=absent
