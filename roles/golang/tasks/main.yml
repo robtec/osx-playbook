@@ -1,7 +1,7 @@
 ---
 # Install golang and configure development environment (https://golang.org)
 
-- name: Downoad Golang tarball
+- name: Download Golang tarball
   become: yes
   get_url:
     url: "https://storage.googleapis.com/golang/go{{ golang_version }}.darwin-amd64.tar.gz"

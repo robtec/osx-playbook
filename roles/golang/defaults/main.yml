@@ -1,3 +1,3 @@
 ---
 # golang role defaults
-golang_version: 1.5.3
+golang_version: 1.8.1
