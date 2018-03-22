@@ -1,3 +1,4 @@
 ---
-# golang role defaults
-golang_version: 1.8.1
+golang_version: "1.10"
+golang_release: "https://storage.googleapis.com/golang/go{{ golang_version }}.darwin-amd64.tar.gz"
+golang_download_file: "go{{ golang_version }}.darwin-amd64.tar.gz"

@@ -1,4 +1,6 @@
 ---
 - hosts: local-osx
+  become: true
+
   roles:
     - golang

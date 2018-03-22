@@ -1,15 +1,15 @@
 ---
 # Install golang and configure development environment (https://golang.org)
-
 - name: Download Golang tarball
-  become: yes
   get_url:
-    url: "https://storage.googleapis.com/golang/go{{ golang_version }}.darwin-amd64.tar.gz"
-    dest: "/tmp/go{{ golang_version }}.darwin-amd64.tar.gz"
+    url: "{{ golang_release }}"
+    dest: "/tmp/{{ golang_download_file }}"
+
+- name: Clean current install
+  file: path="/usr/local/go/" state=absent
 
 - name: Extract Golang tarball
-  become: yes
-  raw: "tar -C /usr/local -xzf /tmp/go{{ golang_version }}.darwin-amd64.tar.gz"
+  raw: "tar -C /usr/local -xzf /tmp/{{ golang_download_file }}"
 
 - name: Create go workspace directory
   file: path="{{ ansible_env.HOME }}/Development/go" state=directory
@@ -22,5 +22,4 @@
     - { line: 'set -x PATH $PATH $GOROOT/bin/ $GOPATH/bin'}
 
 - name: Remove tarball
-  become: yes
-  file: path=/tmp/go{{ golang_version }}.darwin-amd64.tar.gz state=absent
+  file: path="/tmp/{{ golang_download_file }}" state=absent
